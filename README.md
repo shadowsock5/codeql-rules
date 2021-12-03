@@ -54,3 +54,5 @@ not m.getAnAnnotation().getType().hasQualifiedName("org.springframework.security
 select m
 ```
 
+参考：
+- [Java : add fastjson detection. Improve RemoteFlowSource class, support SpringMvc](https://github.com/github/securitylab/issues/119)
