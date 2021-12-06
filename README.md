@@ -31,10 +31,9 @@ class FastJsonParse extends MethodAccess {
     }
 }
 
-from DataFlow::PathNode source, DataFlow::PathNode sink, UnsafeDeserializationConfig conf
+from DataFlow::PathNode source, DataFlow::PathNode sink, UnsafeDeserializationConfig conf, FastJsonParse m
 where conf.hasFlowPath(source, sink)
-select sink.getNode().(UnsafeDeserializationSink).getMethodAccess(), source, sink,
- "Fastjson of $@.", source.getNode(), "user input"
+select m, source, sink
 ```
 
 
