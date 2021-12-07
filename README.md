@@ -50,8 +50,9 @@ select sink.getNode().(UnsafeDeserializationSink).getMethodAccess(), source, sin
 java\ql\lib\semmle\code\java\security\UnsafeDeserializationQuery.qll
 
 有很多东西的反序列化：
+![268fc7134b45f8965a071e9a91a0db0](https://user-images.githubusercontent.com/30398606/144951846-32d5ff30-870c-41f6-8e9e-1d6929f69785.png)
 
-![Uploading image.png…]()
+
 
 
 
@@ -69,6 +70,23 @@ m.getAnAnnotation().getType().hasQualifiedName("org.springframework.web.bind.ann
 and 
 not m.getAnAnnotation().getType().hasQualifiedName("org.springframework.security.access.prepost", "PreAuthorize")
 select m
+```
+
+
+用于是否有某些校验的检查：
+```
+// java\ql\src\experimental\Security\CWE\CWE-552\UnsafeUrlForward.ql
+private class StartsWithSanitizer extends DataFlow::BarrierGuard {
+  StartsWithSanitizer() {
+    this.(MethodAccess).getMethod().hasName("startsWith") and
+    this.(MethodAccess).getMethod().getDeclaringType() instanceof TypeString and
+    this.(MethodAccess).getMethod().getNumberOfParameters() = 1
+  }
+
+  override predicate checks(Expr e, boolean branch) {
+    e = this.(MethodAccess).getQualifier() and branch = true
+  }
+}
 ```
 
 参考：
