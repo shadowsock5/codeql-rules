@@ -36,6 +36,24 @@ where conf.hasFlowPath(source, sink)
 select m, source, sink
 ```
 
+其实codeql官方有这个库，直接用就行，
+```
+import java
+import semmle.code.java.security.UnsafeDeserializationQuery
+import DataFlow::PathGraph
+
+from DataFlow::PathNode source, DataFlow::PathNode sink, UnsafeDeserializationConfig conf
+where conf.hasFlowPath(source, sink)
+select sink.getNode().(UnsafeDeserializationSink).getMethodAccess(), source, sink,"Unsafe deserialization of $@.", source.getNode(), "user input"
+```
+
+java\ql\lib\semmle\code\java\security\UnsafeDeserializationQuery.qll
+
+有很多东西的反序列化：
+
+![Uploading image.png…]()
+
+
 
 检测权限校验：
 ```ql
