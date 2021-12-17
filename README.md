@@ -89,6 +89,12 @@ private class StartsWithSanitizer extends DataFlow::BarrierGuard {
 }
 ```
 
+
+### log4j对java-sec-code的查询结果
+
+![image](https://user-images.githubusercontent.com/30398606/146521688-0c83c567-d9eb-4a1d-86b9-236bfd8b7eca.png)
+
+
 参考：
 - [Java : add fastjson detection. Improve RemoteFlowSource class, support SpringMvc](https://github.com/github/securitylab/issues/119)
 - [Codeql学习笔记](https://github.com/safe6Sec/CodeqlNote)
