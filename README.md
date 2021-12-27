@@ -90,6 +90,43 @@ private class StartsWithSanitizer extends DataFlow::BarrierGuard {
 ```
 
 
+### csharp
+MethodAccess和MethodCall的区别，感觉一般还是用MethodCall。
+for csharp:
+https://codeql.github.com/codeql-standard-libraries/csharp/semmle/code/csharp/exprs/Access.qll/type.Access$MethodAccess.html
+#### MethodAccess:
+```csharp
+
+class C {
+  bool Filter(string s) { ... }
+
+  public IEnumerable<string> DoFilter(IEnumerable<string> list) {
+    return list.Where(Filter);    // access to Filter
+  }
+}
+```
+
+
+https://codeql.github.com/codeql-standard-libraries/csharp/semmle/code/csharp/exprs/Call.qll/type.Call$MethodCall.html
+#### MethodCall:
+```csharp
+class A {
+  void M() { }
+
+  static void CallM(A a) {
+    a.M();   //MethodCall
+  }
+}
+
+```
+
+csharp项目的编译命令：
+进入待编译的项目根目录：
+```
+codeql database create my-database --language=csharp --command="dotnet msbuild" --overwrite
+```
+
+
 ### log4j对java-sec-code的查询结果
 
 ![image](https://user-images.githubusercontent.com/30398606/146521688-0c83c567-d9eb-4a1d-86b9-236bfd8b7eca.png)
