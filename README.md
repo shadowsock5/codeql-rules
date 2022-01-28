@@ -135,5 +135,5 @@ codeql database create my-database --language=csharp --command="dotnet msbuild" 
 参考：
 - [Java : add fastjson detection. Improve RemoteFlowSource class, support SpringMvc](https://github.com/github/securitylab/issues/119)
 - [Codeql学习笔记](https://github.com/safe6Sec/CodeqlNote)
-- https://mp.weixin.qq.com/s/WRoP6kNVwivR_8k_3N2x6Q
-- 
+- [CodeQL 获取SpringBoot应用的映射URL](https://mp.weixin.qq.com/s/WRoP6kNVwivR_8k_3N2x6Q)
+
